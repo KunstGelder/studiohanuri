@@ -1,0 +1,12 @@
+{
+  "slug": "03-placeholder",
+  "direction": "KR_NL",
+  "cover": "",
+  "title_en": "Book title",
+  "title_nl": "Boektitel",
+  "title_kr": "책 제목",
+  "publisher_en": "Publisher",
+  "publisher_nl": "Uitgever",
+  "publisher_kr": "출판사",
+  "order": 3
+}

@@ -1,0 +1,79 @@
+# Studio Hanuri — Decap CMS 설정
+# 이 파일은 admin 페이지에서 무엇을 편집할 수 있는지 정의합니다.
+
+backend:
+  name: git-gateway
+  branch: main  # GitHub 저장소의 기본 브랜치 (master일 수도 있음)
+
+# 이미지·파일이 업로드되는 폴더
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+# 사이트 미리보기 링크
+site_url: https://studiohanuri.com
+display_url: https://studiohanuri.com
+logo_url: /assets/logo.png
+
+# 편집기 언어 (관리자 화면 UI)
+locale: 'en'
+
+collections:
+  # ────────── 블로그 / 소식 ──────────
+  - name: "blog"
+    label: "📝 Blog / 소식"
+    label_singular: "Blog post"
+    folder: "_data/blog"
+    create: true
+    delete: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    format: "json"
+    summary: "{{date}} — {{title_en}}"
+    sortable_fields: ['date']
+    view_filters:
+      - label: "This year"
+        field: date
+        pattern: "2026"
+    fields:
+      - { label: "Date 날짜", name: "date", widget: "date", default: "" }
+      - { label: "Image 이미지", name: "image", widget: "image", required: false, hint: "이미지를 업로드하거나 기존 사진 선택" }
+
+      - { label: "Tag — English", name: "tag_en", widget: "string", hint: "예: Event / Insights / Studio" }
+      - { label: "Tag — Nederlands", name: "tag_nl", widget: "string" }
+      - { label: "Tag — 한국어", name: "tag_kr", widget: "string" }
+
+      - { label: "Title — English", name: "title_en", widget: "string" }
+      - { label: "Title — Nederlands", name: "title_nl", widget: "string" }
+      - { label: "Title — 한국어", name: "title_kr", widget: "string" }
+
+      - { label: "Excerpt — English", name: "excerpt_en", widget: "text", hint: "Short 1-2 sentence preview" }
+      - { label: "Excerpt — Nederlands", name: "excerpt_nl", widget: "text" }
+      - { label: "Excerpt — 한국어", name: "excerpt_kr", widget: "text" }
+
+  # ────────── 포트폴리오 / 책 ──────────
+  - name: "portfolio"
+    label: "📚 Portfolio / 책"
+    label_singular: "Book"
+    folder: "_data/portfolio"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    format: "json"
+    summary: "{{title_en}} — {{publisher_en}} ({{direction}})"
+    sortable_fields: ['order']
+    fields:
+      - { label: "Order 순서", name: "order", widget: "number", value_type: "int", min: 1, hint: "작은 숫자가 먼저 보임" }
+      - label: "Translation direction 번역 방향"
+        name: "direction"
+        widget: "select"
+        options:
+          - { label: "Korean → Dutch (KR → NL)", value: "KR_NL" }
+          - { label: "Dutch → Korean (NL → KR)", value: "NL_KR" }
+      - { label: "Cover image 표지", name: "cover", widget: "image", required: false, hint: "책 표지 사진 (없으면 플레이스홀더 표시)" }
+
+      - { label: "Title — English", name: "title_en", widget: "string" }
+      - { label: "Title — Nederlands", name: "title_nl", widget: "string" }
+      - { label: "Title — 한국어", name: "title_kr", widget: "string" }
+
+      - { label: "Publisher — English", name: "publisher_en", widget: "string" }
+      - { label: "Publisher — Nederlands", name: "publisher_nl", widget: "string" }
+      - { label: "Publisher — 한국어", name: "publisher_kr", widget: "string" }
