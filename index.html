@@ -207,9 +207,15 @@ footer{background:var(--navy-deep);color:rgba(255,255,255,.6);padding:3rem 2.5re
   nav{margin:0;}
   nav ul{display:none;}
   .menu-btn{display:block;order:2;}
-  nav.open ul{display:flex;position:absolute;top:100%;right:1.4rem;flex-direction:column;background:var(--cream);padding:1.4rem 1.8rem;border-radius:14px;box-shadow:0 12px 40px -12px rgba(0,0,0,.25);gap:1.1rem;margin-top:.6rem;z-index:50;}
+  .lang-switch{display:none;}
+  nav.open ul{display:flex;position:absolute;top:100%;right:1.4rem;flex-direction:column;background:var(--cream);padding:1.4rem 1.8rem;border-radius:14px;box-shadow:0 12px 40px -12px rgba(0,0,0,.25);gap:1.1rem;margin-top:.6rem;z-index:50;min-width:180px;}
   nav.open ul a{color:var(--ink);}
+  nav.open .mobile-lang{display:flex;gap:.4rem;padding-top:1rem;border-top:1px solid rgba(0,0,0,.1);margin-top:.4rem;}
+  nav.open .mobile-lang button{flex:1;background:none;border:1px solid rgba(0,0,0,.15);border-radius:20px;padding:.4rem .6rem;font-size:.72rem;font-weight:600;letter-spacing:.06em;color:var(--ink-soft);cursor:pointer;font-family:var(--body);transition:all .25s ease;}
+  nav.open .mobile-lang button:hover{border-color:var(--navy);color:var(--navy);}
+  nav.open .mobile-lang button.active{background:var(--navy);color:#fff;border-color:var(--navy);}
 }
+.mobile-lang{display:none;}
 @media(max-width:640px){
   header{padding:1rem 1.4rem;}
   header.scrolled{padding:.7rem 1.4rem;}
@@ -241,6 +247,11 @@ footer{background:var(--navy-deep);color:rgba(255,255,255,.6);padding:3rem 2.5re
         <li><a href="#portfolio">Portfolio</a></li>
         <li><a href="#blog">Journal</a></li>
         <li><a href="#contact">Contact</a></li>
+      <li class="mobile-lang">
+        <button class="active" onclick="event.preventDefault();">EN</button>
+        <button onclick="window.location.href='index-nl.html'">NL</button>
+        <button onclick="window.location.href='index-kr.html'">KR</button>
+      </li>
       </ul>
     </nav>
     <div class="lang-switch">
