@@ -244,7 +244,7 @@ footer{background:var(--navy-deep);color:rgba(255,255,255,.6);padding:3rem 2.5re
       <ul>
         <li><a href="#about">소개</a></li>
         <li><a href="#services">서비스</a></li>
-        <!-- <li><a href="#portfolio">포트폴리오</a></li> -->
+        <li><a href="#portfolio">포트폴리오</a></li>
         <li><a href="#blog">소식</a></li>
         <li><a href="#contact">문의</a></li>
       <li class="mobile-lang">
@@ -320,7 +320,6 @@ footer{background:var(--navy-deep);color:rgba(255,255,255,.6);padding:3rem 2.5re
   </div>
 </section>
 
-<!--
 <section class="portfolio" id="portfolio">
   <div class="wrap">
     <div class="port-head reveal">
@@ -334,7 +333,6 @@ footer{background:var(--navy-deep);color:rgba(255,255,255,.6);padding:3rem 2.5re
     <p class="port-note">첫 번역서들이 곧 나옵니다 — 이 책장은 이제 막 시작되었어요.</p>
   </div>
 </section>
--->
 
 <section class="blog" id="blog">
   <div class="wrap">
@@ -358,7 +356,7 @@ footer{background:var(--navy-deep);color:rgba(255,255,255,.6);padding:3rem 2.5re
         <a class="contact-detail" href="https://www.instagram.com/studio_hanuri/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg> @studio_hanuri</a>
         <div class="contact-detail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> 벨기에 앤트워프</div>
       </div>
-      <form class="cform reveal" id="cform" name="contact-kr" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-netlify-recaptcha="false">
+      <form class="cform reveal" id="cform" name="contact-kr" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field" data-netlify-recaptcha="false">
         <input type="hidden" name="form-name" value="contact-kr">
         <p style="display:none"><label>Don't fill: <input name="bot-field"></label></p>
         <div>
@@ -394,7 +392,7 @@ footer{background:var(--navy-deep);color:rgba(255,255,255,.6);padding:3rem 2.5re
     <img src="assets/wordmark-white.png" alt="Studio Hanuri">
   </div>
   <div class="footer-links">
-    <a href="#about">소개</a><a href="#services">서비스</a><!-- <a href="#portfolio">포트폴리오</a> --><a href="#blog">소식</a><a href="#contact">문의</a>
+    <a href="#about">소개</a><a href="#services">서비스</a><a href="#portfolio">포트폴리오</a><a href="#blog">소식</a><a href="#contact">문의</a>
   </div>
   <div class="footer-social">
     <a href="https://www.instagram.com/studio_hanuri/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
@@ -428,31 +426,7 @@ const io=new IntersectionObserver((entries)=>{
 },{threshold:.15});
 document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%3*0.08)+'s';io.observe(el);});
 
-document.getElementById('cform').addEventListener('submit', async e => {
-  e.preventDefault();
-  const form = e.target;
-  const btn = form.querySelector('.send-btn');
-  const original = btn.textContent;
-  btn.disabled = true;
-  btn.textContent = '전송 중…';
-  try {
-    const data = new FormData(form);
-    const body = new URLSearchParams(data).toString();
-    const res = await fetch(window.location.pathname, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body
-    });
-    if (!res.ok) throw new Error(res.status);
-    btn.textContent = '감사합니다! ✓';
-    btn.style.background = '#cdd7f5';
-    form.reset();
-    setTimeout(() => { btn.textContent = original; btn.style.background = ''; btn.disabled = false; }, 3500);
-  } catch (err) {
-    btn.textContent = '⚠️ Try again';
-    setTimeout(() => { btn.textContent = original; btn.disabled = false; }, 3000);
-  }
-});
+
 </script>
 <script src="assets/content-loader.js"></script>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>

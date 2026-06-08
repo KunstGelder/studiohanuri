@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Studio Hanuri — Vertaling van kinderboeken · Culturele brug</title>
-<meta name="description" content="Studio Hanuri is een culturele vertaalstudio die kinderboeken verbindt tussen Korea en Nederland & België. Wij brengen over wat AI niet kan — de adem van het verhaal.">
+<meta name="description" content="Studio Hanuri is een cultureel vertaalstudio die kinderboeken verbindt tussen Korea en Nederland & België. Wij brengen over wat AI niet kan — de adem van het verhaal.">
 <meta property="og:title" content="Studio Hanuri — Vertaling van kinderboeken · Culturele brug">
-<meta property="og:description" content="Een culturele vertaalstudio die kinderboeken verbindt tussen Korea en Nederland & België. Wij brengen over wat AI niet kan — de adem van het verhaal.">
+<meta property="og:description" content="Een cultureel vertaalstudio die kinderboeken verbindt tussen Korea en Nederland & België. Wij brengen over wat AI niet kan — de adem van het verhaal.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="assets/logo.png">
 <link rel="icon" type="image/png" href="assets/logo.png">
@@ -244,7 +244,7 @@ footer{background:var(--navy-deep);color:rgba(255,255,255,.6);padding:3rem 2.5re
       <ul>
         <li><a href="#about">Over ons</a></li>
         <li><a href="#services">Diensten</a></li>
-        <!-- <li><a href="#portfolio">Portfolio</a></li> -->
+        <li><a href="#portfolio">Portfolio</a></li>
         <li><a href="#blog">Journaal</a></li>
         <li><a href="#contact">Contact</a></li>
       <li class="mobile-lang">
@@ -283,7 +283,7 @@ footer{background:var(--navy-deep);color:rgba(255,255,255,.6);padding:3rem 2.5re
       <div class="about-body reveal">
         <div class="eyebrow">Over ons</div>
         <h2 class="sec-title">Verhalen verbinden over twee werelden</h2>
-        <p class="lead">Een culturele vertaalstudio die kinderboeken verbindt tussen <b>Korea</b> en <b>Nederland &amp; België</b>.</p>
+        <p class="lead">Een cultureel vertaalstudio die kinderboeken verbindt tussen <b>Korea</b> en <b>Nederland &amp; België</b>.</p>
         <p>Wij vertalen niet alleen woorden — wij brengen over wat AI niet kan: de adem van het verhaal. Het ritme, de warmte, de culturele nuance die een boek tot leven brengt voor jonge lezers aan beide kanten van de wereld.</p>
         <p class="about-place">📍 Gevestigd in <b>Antwerpen</b> — een stad verweven met de geschiedenis van de Europese boekdrukkunst, van het UNESCO-erfgoed Plantin-Moretus tot de hedendaagse Vlaamse prentenboektraditie. Wij werken vanuit het hart van de Europese kinderboekencultuur.</p>
         <p class="sig">세상의 이야기를 잇는 곳. Dat is Studio Hanuri.</p>
@@ -320,7 +320,6 @@ footer{background:var(--navy-deep);color:rgba(255,255,255,.6);padding:3rem 2.5re
   </div>
 </section>
 
-<!--
 <section class="portfolio" id="portfolio">
   <div class="wrap">
     <div class="port-head reveal">
@@ -334,7 +333,6 @@ footer{background:var(--navy-deep);color:rgba(255,255,255,.6);padding:3rem 2.5re
     <p class="port-note">Onze eerste vertaalde titels zijn onderweg — deze boekenplank is nog maar net begonnen.</p>
   </div>
 </section>
--->
 
 <section class="blog" id="blog">
   <div class="wrap">
@@ -358,7 +356,7 @@ footer{background:var(--navy-deep);color:rgba(255,255,255,.6);padding:3rem 2.5re
         <a class="contact-detail" href="https://www.instagram.com/studio_hanuri/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg> @studio_hanuri</a>
         <div class="contact-detail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> Wilrijk (Antwerpen), België</div>
       </div>
-      <form class="cform reveal" id="cform" name="contact-nl" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-netlify-recaptcha="false">
+      <form class="cform reveal" id="cform" name="contact-nl" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field" data-netlify-recaptcha="false">
         <input type="hidden" name="form-name" value="contact-nl">
         <p style="display:none"><label>Don't fill: <input name="bot-field"></label></p>
         <div>
@@ -394,7 +392,7 @@ footer{background:var(--navy-deep);color:rgba(255,255,255,.6);padding:3rem 2.5re
     <img src="assets/wordmark-white.png" alt="Studio Hanuri">
   </div>
   <div class="footer-links">
-    <a href="#about">Over ons</a><a href="#services">Diensten</a><!-- <a href="#portfolio">Portfolio</a> --><a href="#blog">Journaal</a><a href="#contact">Contact</a>
+    <a href="#about">Over ons</a><a href="#services">Diensten</a><a href="#portfolio">Portfolio</a><a href="#blog">Journaal</a><a href="#contact">Contact</a>
   </div>
   <div class="footer-social">
     <a href="https://www.instagram.com/studio_hanuri/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
@@ -428,31 +426,7 @@ const io=new IntersectionObserver((entries)=>{
 },{threshold:.15});
 document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%3*0.08)+'s';io.observe(el);});
 
-document.getElementById('cform').addEventListener('submit', async e => {
-  e.preventDefault();
-  const form = e.target;
-  const btn = form.querySelector('.send-btn');
-  const original = btn.textContent;
-  btn.disabled = true;
-  btn.textContent = 'Versturen…';
-  try {
-    const data = new FormData(form);
-    const body = new URLSearchParams(data).toString();
-    const res = await fetch(window.location.pathname, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body
-    });
-    if (!res.ok) throw new Error(res.status);
-    btn.textContent = 'Bedankt! ✓';
-    btn.style.background = '#cdd7f5';
-    form.reset();
-    setTimeout(() => { btn.textContent = original; btn.style.background = ''; btn.disabled = false; }, 3500);
-  } catch (err) {
-    btn.textContent = '⚠️ Try again';
-    setTimeout(() => { btn.textContent = original; btn.disabled = false; }, 3000);
-  }
-});
+
 </script>
 <script src="assets/content-loader.js"></script>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
