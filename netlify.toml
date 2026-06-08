@@ -1,12 +1,17 @@
-# Studio Hanuri — Netlify build settings
-
 [build]
-  # 배포할 때 manifest.json을 자동 생성합니다.
-  command = "node build-manifest.js"
   publish = "."
 
-# index.html 외에 admin/도 그대로 서빙
 [[redirects]]
-  from = "/admin"
-  to = "/admin/index.html"
+  from = "/"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/index-nl"
+  to = "/index-nl.html"
+  status = 200
+
+[[redirects]]
+  from = "/index-kr"
+  to = "/index-kr.html"
   status = 200
