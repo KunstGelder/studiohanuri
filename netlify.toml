@@ -1,6 +1,5 @@
 [build]
   publish = "."
-  command = "echo 'build'"
 
 [[redirects]]
   from = "/index-nl"
