@@ -429,6 +429,7 @@ const io=new IntersectionObserver((entries)=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
 },{threshold:.15});
 document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%3*0.08)+'s';io.observe(el);});
+setTimeout(function(){ document.querySelectorAll('.reveal:not(.in)').forEach(function(el){ el.classList.add('in'); }); }, 1000);
 
 // Formspree AJAX
 const cform = document.querySelector('.cform');
@@ -458,33 +459,7 @@ if(cform){
   });
 }
 
-// Formspree AJAX
-const cform = document.querySelector('.cform');
-if(cform){
-  cform.addEventListener('submit', async function(e){
-    e.preventDefault();
-    const btn = cform.querySelector('.send-btn');
-    const original = btn.textContent;
-    btn.disabled = true;
-    btn.textContent = 'Sending…';
-    try {
-      const res = await fetch(cform.action, {
-        method: 'POST',
-        body: new FormData(cform),
-        headers: { 'Accept': 'application/json' }
-      });
-      if(res.ok){
-        cform.innerHTML = '<div style="text-align:center;padding:2rem 0;"><div style="font-size:2rem;margin-bottom:1rem;">✉️</div><p style="font-size:1.15rem;color:#fff;font-weight:600;">Thank you!</p><p style="color:rgba(255,255,255,.75);margin-top:.5rem;">We will be in touch soon.</p></div>';
-      } else {
-        btn.textContent = '⚠️ Try again';
-        setTimeout(()=>{ btn.textContent=original; btn.disabled=false; }, 3000);
-      }
-    } catch(err){
-      btn.textContent = '⚠️ Try again';
-      setTimeout(()=>{ btn.textContent=original; btn.disabled=false; }, 3000);
-    }
-  });
-}
+
 
 
 </script>
