@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>스튜디오 하누리 — 어린이책 번역 · 문화 브릿지</title>
+<meta name="description" content="스튜디오 하누리는 한국과 네덜란드·벨기에의 어린이책을 잇는 문화 번역 스튜디오입니다. AI가 담아낼 수 없는 이야기의 숨결까지 옮깁니다.">
+<meta property="og:title" content="스튜디오 하누리 — 어린이책 번역 · 문화 브릿지">
+<meta property="og:description" content="한국과 네덜란드·벨기에의 어린이책을 잇는 문화 번역 스튜디오. AI가 담아낼 수 없는 이야기의 숨결까지 옮깁니다.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/logo.png">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#2a4a9d;
+  --navy-dark:#1f3877;
+  --navy-deep:#16285a;
+  --cream:#f6f3ec;
+  --cream-warm:#efe9dd;
+  --ink:#1a1a22;
+  --ink-soft:#4a4a55;
+  --white:#ffffff;
+  --display:'Fraunces',Georgia,serif;
+  --body:'Manrope',-apple-system,sans-serif;
+  --radius:18px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--body);color:var(--ink);background:var(--cream);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+
+/* ---------- nav ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;
+  background:var(--navy);box-shadow:0 2px 12px rgba(22,40,90,.18);transition:padding .4s ease;}
+header.scrolled{padding:.7rem 2.5rem;}
+.brand{display:flex;align-items:center;position:relative;height:34px;flex-shrink:0;}
+.brand .wm{height:34px;width:auto;max-width:none;flex-shrink:0;transition:opacity .35s ease;}
+.brand .wm-navy{position:absolute;left:0;top:0;opacity:0;}
+header.scrolled .brand{height:30px;}
+header.scrolled .brand .wm{height:30px;}
+.nav-right{display:flex;align-items:center;gap:1.2rem;flex:1;justify-content:flex-end;}
+nav{margin-right:auto;margin-left:auto;}
+nav ul{display:flex;gap:2.2rem;list-style:none;}
+nav a{font-size:.82rem;font-weight:500;letter-spacing:.04em;color:rgba(255,255,255,.88);position:relative;padding:.2rem 0;transition:color .35s ease;}
+nav a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:1.5px;background:currentColor;transition:width .3s ease;}
+nav a:hover::after{width:100%;}
+nav a:hover{color:#fff;}
+
+.lang-switch{display:flex;gap:.2rem;border:1px solid rgba(255,255,255,.3);border-radius:30px;padding:.2rem;}
+.lang{background:none;border:none;cursor:pointer;font-family:var(--body);font-size:.72rem;font-weight:600;letter-spacing:.06em;
+  color:rgba(255,255,255,.7);padding:.3rem .7rem;border-radius:30px;transition:all .3s ease;}
+.lang:hover{color:#fff;}
+.lang.active{background:rgba(255,255,255,.95);color:var(--navy);}
+.menu-btn{display:none;background:none;border:none;cursor:pointer;font-size:1.5rem;color:#fff;}
+
+/* ---------- hero ---------- */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  background:var(--navy);position:relative;overflow:hidden;padding:7rem 1.5rem 5rem;}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;animation:fade 1.6s .2s ease forwards;}
+.hero-overlay{position:absolute;inset:0;z-index:1;
+  background:radial-gradient(ellipse 70% 55% at 50% 45%,rgba(22,40,90,.34) 0%,rgba(22,40,90,.12) 55%,rgba(22,40,90,0) 80%),linear-gradient(180deg,rgba(22,40,90,0) 70%,rgba(22,40,90,.4) 100%);}
+.hero-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;max-width:760px;}
+.hero-eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-bottom:1.8rem;text-shadow:0 1px 10px rgba(0,0,0,.5);
+  opacity:0;animation:rise .9s .4s ease forwards;}
+.hero h1{font-family:var(--display);font-weight:500;font-size:clamp(2.6rem,6vw,5rem);line-height:1.02;color:var(--white);letter-spacing:-.02em;margin-bottom:1.4rem;
+  text-shadow:0 2px 24px rgba(0,0,0,.55),0 1px 4px rgba(0,0,0,.4);opacity:0;animation:rise .9s .55s ease forwards;}
+.hero h1 em{font-style:italic;font-weight:400;color:#cdd7f5;}
+.hero-kr{font-family:var(--display);font-style:italic;font-size:1.1rem;color:rgba(255,255,255,.85);letter-spacing:.04em;margin-bottom:2rem;text-shadow:0 1px 12px rgba(0,0,0,.5);
+  opacity:0;animation:rise .9s .7s ease forwards;}
+.hero-tag{font-size:1.12rem;line-height:1.75;color:rgba(255,255,255,.92);max-width:34ch;margin-bottom:2.8rem;
+  text-shadow:0 1px 16px rgba(0,0,0,.6),0 1px 3px rgba(0,0,0,.4);opacity:0;animation:rise .9s .85s ease forwards;}
+.hero-tag b{font-weight:600;color:var(--white);}
+.hero-cta{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 2.2rem;border:1.5px solid rgba(255,255,255,.55);border-radius:40px;
+  font-size:.85rem;font-weight:600;letter-spacing:.08em;color:var(--white);transition:all .3s ease;backdrop-filter:blur(2px);
+  opacity:0;animation:rise .9s 1s ease forwards;}
+.hero-cta:hover{background:var(--white);color:var(--navy);border-color:var(--white);gap:1rem;}
+.hero-logo-float{position:absolute;right:24px;bottom:24px;width:96px;height:auto;opacity:.22;z-index:2;
+  animation:float 8s ease-in-out infinite;}
+
+@keyframes rise{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fade{from{opacity:0;}to{opacity:1;}}
+@keyframes spin{to{transform:rotate(360deg);}}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-18px);}}
+
+/* ---------- sections ---------- */
+section{padding:7rem 2.5rem;}
+.wrap{max-width:1140px;margin:0 auto;}
+.eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--navy);margin-bottom:1.1rem;display:flex;align-items:center;gap:.8rem;}
+.eyebrow::before{content:'';width:28px;height:1.5px;background:var(--navy);display:inline-block;}
+.sec-title{font-family:var(--display);font-weight:500;font-size:clamp(2rem,3.6vw,2.9rem);line-height:1.1;letter-spacing:-.015em;color:var(--ink);margin-bottom:1.5rem;}
+
+/* about */
+.about{background:var(--cream);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.about-body p{font-size:1.18rem;line-height:1.85;color:var(--ink-soft);margin-bottom:1.4rem;}
+.about-body .lead{font-family:var(--display);font-size:1.5rem;line-height:1.5;color:var(--ink);font-weight:400;}
+.about-body .lead b{color:var(--navy);font-weight:600;}
+.about-body .sig{font-family:var(--display);font-style:italic;font-size:1.2rem;color:var(--navy);}
+.about-body .about-place{margin:1.6rem 0;padding:1.2rem 1.4rem;border-left:3px solid var(--navy);
+  background:rgba(42,74,157,.05);border-radius:0 8px 8px 0;font-size:1rem;line-height:1.65;}
+.about-body .about-place b{color:var(--navy);}
+.about-visual{position:relative;display:flex;justify-content:center;}
+.about-card-img{width:100%;max-width:400px;height:auto;border-radius:24px;
+  filter:drop-shadow(0 24px 60px rgba(22,40,90,.35));animation:float 9s ease-in-out infinite;}
+
+/* services */
+.services{background:var(--navy);color:var(--white);position:relative;overflow:hidden;}
+.services .eyebrow{color:#aeb ;color:rgba(255,255,255,.85);}
+.services .eyebrow::before{background:rgba(255,255,255,.6);}
+.services .sec-title{color:var(--white);}
+.services .sec-intro{font-size:1.15rem;color:rgba(255,255,255,.75);max-width:46ch;margin-bottom:3.5rem;}
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;}
+.svc-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);border-radius:var(--radius);padding:2.6rem;transition:all .35s ease;}
+.svc-card:hover{background:rgba(255,255,255,.1);transform:translateY(-4px);}
+.svc-num{font-family:var(--display);font-size:.95rem;color:rgba(255,255,255,.4);letter-spacing:.1em;}
+.svc-card h3{font-family:var(--display);font-weight:500;font-size:1.65rem;margin:.7rem 0 1rem;color:var(--white);}
+.svc-card p{font-size:1rem;line-height:1.75;color:rgba(255,255,255,.78);margin-bottom:1.6rem;}
+.svc-pill{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.1em;padding:.4rem .9rem;border:1px solid rgba(255,255,255,.3);border-radius:30px;color:rgba(255,255,255,.9);}
+.svc-logo-float{position:absolute;left:-80px;top:-40px;width:240px;height:auto;opacity:.06;animation:float 9s ease-in-out infinite;}
+
+/* portfolio */
+.portfolio{background:var(--cream-warm);}
+.port-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-bottom:3rem;}
+.port-head p{color:var(--ink-soft);max-width:42ch;}
+.port-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;}
+.port-card{background:var(--white);border-radius:14px;overflow:hidden;box-shadow:0 8px 30px -16px rgba(22,40,90,.3);transition:all .35s ease;cursor:pointer;}
+.port-card:hover{transform:translateY(-6px);box-shadow:0 20px 44px -18px rgba(22,40,90,.45);}
+.port-cover{aspect-ratio:3/4;background:linear-gradient(150deg,#dfe4f2,#c3cce8);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;color:var(--navy);}
+.port-cover svg{width:34px;height:34px;opacity:.5;}
+.port-cover span{font-size:.68rem;letter-spacing:.16em;opacity:.6;font-weight:600;}
+.port-info{padding:1.1rem 1.2rem 1.3rem;}
+.port-info h4{font-family:var(--display);font-weight:500;font-size:1.05rem;color:var(--ink);margin-bottom:.2rem;}
+.port-info .pub{font-size:.82rem;color:var(--ink-soft);}
+.port-dir{display:inline-block;margin-top:.7rem;font-size:.68rem;font-weight:700;letter-spacing:.08em;color:var(--navy);background:#e7ebf7;padding:.25rem .7rem;border-radius:20px;}
+.port-note{text-align:center;margin-top:2.5rem;font-size:.9rem;color:var(--ink-soft);font-style:italic;font-family:var(--display);}
+
+/* blog */
+.blog{background:var(--cream);}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.8rem;margin-top:3rem;}
+.blog-card{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:0 8px 30px -18px rgba(22,40,90,.3);transition:all .35s ease;display:flex;flex-direction:column;}
+.blog-card:hover{transform:translateY(-5px);box-shadow:0 20px 44px -18px rgba(22,40,90,.4);}
+.blog-img{aspect-ratio:16/10;overflow:hidden;}
+.blog-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+.blog-card:hover .blog-img img{transform:scale(1.06);}
+.blog-text{padding:1.5rem 1.6rem 1.8rem;flex:1;display:flex;flex-direction:column;}
+.blog-meta{display:flex;gap:.8rem;align-items:center;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);font-weight:600;margin-bottom:.8rem;}
+.blog-meta .tag{background:#e7ebf7;padding:.2rem .6rem;border-radius:20px;}
+.blog-card h3{font-family:var(--display);font-weight:500;font-size:1.25rem;line-height:1.3;color:var(--ink);margin-bottom:.7rem;}
+.blog-card p{font-size:.92rem;color:var(--ink-soft);line-height:1.65;flex:1;}
+.blog-card .more{margin-top:1.1rem;font-size:.82rem;font-weight:600;color:var(--navy);display:inline-flex;align-items:center;gap:.4rem;}
+
+/* contact */
+.contact{background:var(--navy-deep);color:var(--white);position:relative;overflow:hidden;}
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:5rem;align-items:start;}
+.contact .eyebrow{color:rgba(255,255,255,.85);}
+.contact .eyebrow::before{background:rgba(255,255,255,.6);}
+.contact .sec-title{color:var(--white);}
+.contact-intro{font-size:1.1rem;color:rgba(255,255,255,.78);margin-bottom:2.5rem;line-height:1.75;}
+.contact-detail{display:flex;align-items:center;gap:.9rem;margin-bottom:1.1rem;font-size:1rem;color:rgba(255,255,255,.9);text-decoration:none;transition:color .25s ease;width:fit-content;}
+a.contact-detail:hover{color:#fff;}
+a.contact-detail:hover svg{color:#fff;}
+.contact-detail svg{width:20px;height:20px;flex-shrink:0;color:#cdd7f5;transition:color .25s ease;}
+.cform{display:flex;flex-direction:column;gap:1rem;}
+.cform label{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:.4rem;display:block;font-weight:600;}
+.cform input,.cform select,.cform textarea{width:100%;padding:.9rem 1rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);border-radius:10px;
+  color:var(--white);font-family:var(--body);font-size:.95rem;transition:all .25s ease;}
+.cform input::placeholder,.cform textarea::placeholder{color:rgba(255,255,255,.4);}
+.cform input:focus,.cform select:focus,.cform textarea:focus{outline:none;border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.11);}
+.cform select option{color:#1a1a22;}
+.cform textarea{resize:vertical;min-height:120px;}
+.cform .row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.send-btn{margin-top:.5rem;align-self:flex-start;padding:1rem 2.4rem;background:var(--white);color:var(--navy);border:none;border-radius:40px;
+  font-family:var(--body);font-size:.88rem;font-weight:700;letter-spacing:.06em;cursor:pointer;transition:all .3s ease;}
+.send-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px -10px rgba(0,0,0,.4);}
+.contact-logo-float{position:absolute;right:-80px;bottom:-60px;width:300px;height:auto;opacity:.06;animation:float 10s ease-in-out infinite;}
+
+/* footer */
+footer{background:var(--navy-deep);color:rgba(255,255,255,.6);padding:3rem 2.5rem;border-top:1px solid rgba(255,255,255,.1);text-align:center;}
+.footer-brand{display:flex;align-items:center;justify-content:center;margin-bottom:1.4rem;}
+.footer-brand img{height:30px;width:auto;}
+.footer-links{display:flex;gap:1.5rem;justify-content:center;margin-bottom:1.2rem;font-size:.82rem;}
+.footer-links a:hover{color:var(--white);}
+.footer-social{display:flex;gap:1rem;justify-content:center;margin-bottom:1.3rem;}
+.footer-social a{display:flex;width:38px;height:38px;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.2);border-radius:50%;color:rgba(255,255,255,.7);transition:all .3s ease;}
+.footer-social a:hover{background:rgba(255,255,255,.95);color:var(--navy);border-color:transparent;}
+.footer-social svg{width:18px;height:18px;}
+.footer-sub{font-size:.78rem;letter-spacing:.04em;}
+.footer-legal{margin-top:1.4rem;padding-top:1.4rem;border-top:1px solid rgba(255,255,255,.1);
+  font-size:.72rem;line-height:1.7;color:rgba(255,255,255,.5);letter-spacing:.02em;}
+.footer-legal strong{color:rgba(255,255,255,.7);font-weight:600;}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+/* responsive */
+@media(max-width:980px){
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:3rem;}
+  .about-visual{max-width:420px;}
+  .svc-grid,.blog-grid{grid-template-columns:1fr;}
+  .port-grid{grid-template-columns:repeat(2,1fr);}
+  .nav-right{flex:0 0 auto;}
+  nav{margin:0;}
+  nav ul{display:none;}
+  .menu-btn{display:block;order:2;}
+  .lang-switch{display:none;}
+  nav.open ul{display:flex;position:absolute;top:100%;right:1.4rem;flex-direction:column;background:var(--cream);padding:1.4rem 1.8rem;border-radius:14px;box-shadow:0 12px 40px -12px rgba(0,0,0,.25);gap:1.1rem;margin-top:.6rem;z-index:50;min-width:180px;}
+  nav.open ul a{color:var(--ink);}
+  nav.open .mobile-lang{display:flex;gap:.4rem;padding-top:1rem;border-top:1px solid rgba(0,0,0,.1);margin-top:.4rem;}
+  nav.open .mobile-lang button{flex:1;background:none;border:1px solid rgba(0,0,0,.15);border-radius:20px;padding:.4rem .6rem;font-size:.72rem;font-weight:600;letter-spacing:.06em;color:var(--ink-soft);cursor:pointer;font-family:var(--body);transition:all .25s ease;}
+  nav.open .mobile-lang button:hover{border-color:var(--navy);color:var(--navy);}
+  nav.open .mobile-lang button.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+}
+.mobile-lang{display:none;}
+@media(max-width:640px){
+  header{padding:1rem 1.4rem;}
+  header.scrolled{padding:.7rem 1.4rem;}
+  .brand .wm{height:28px;}
+  header.scrolled .brand .wm{height:26px;}
+  .lang-switch{padding:.15rem;}
+  .lang{padding:.25rem .5rem;font-size:.68rem;}
+  section{padding:4.5rem 1.4rem;}
+  .cform .row{grid-template-columns:1fr;}
+  .port-grid{grid-template-columns:1fr 1fr;}
+}
+/* chalk line trail (canvas) */
+#chalk-canvas{position:fixed;inset:0;pointer-events:none;z-index:9999;}
+@media(hover:none),(pointer:coarse){#chalk-canvas{display:none!important;}}
+</style>
+</head>
+<body>
+
+<header id="header">
+  <a href="#top" class="brand">
+    <img src="assets/wordmark-white.png" class="wm wm-white" alt="Studio Hanuri">
+    <img src="assets/wordmark-navy.png" class="wm wm-navy" alt="Studio Hanuri">
+  </a>
+  <div class="nav-right">
+    <nav id="nav">
+      <ul>
+        <li><a href="#about">소개</a></li>
+        <li><a href="#services">서비스</a></li>
+        <!-- <li><a href="#portfolio">포트폴리오</a></li> -->
+        <li><a href="#blog">소식</a></li>
+        <li><a href="#contact">문의</a></li>
+      <li class="mobile-lang">
+        <button onclick="window.location.href='index.html'">EN</button>
+        <button onclick="window.location.href='index-nl.html'">NL</button>
+        <button class="active" onclick="event.preventDefault();">KR</button>
+      </li>
+      </ul>
+    </nav>
+    <div class="lang-switch">
+      <button class="lang" data-lang="en">EN</button>
+      <button class="lang" data-lang="nl">NL</button>
+      <button class="lang active" data-lang="kr">KR</button>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<a id="top"></a>
+<div class="hero">
+  <img src="assets/hero-bg.jpg" class="hero-bg" alt="함께 책 읽는 아이들">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">어린이책 번역 · 문화 브릿지</div>
+    <h1>이야기의 숨결을,<br>두 <em>세계</em>로 잇습니다.</h1>
+    <div class="hero-kr">Waar wereldverhalen samen komen</div>
+    <p class="hero-tag">언어를 옮기는 것이 아니라 — <b>AI가 담아낼 수 없는</b> 이야기의 리듬과 온기, 그 숨결까지 옮깁니다.</p>
+    <a href="#contact" class="hero-cta">문의하기 →</a>
+  </div>
+  <img src="assets/emblem-white.png" class="hero-logo-float" alt="" aria-hidden="true">
+</div>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-body reveal">
+        <div class="eyebrow">소개</div>
+        <h2 class="sec-title">두 세계의 이야기를 잇다</h2>
+        <p class="lead">한국과 <b>네덜란드·벨기에</b>의 어린이책을 양국에 이어주는 문화 번역 스튜디오.</p>
+        <p>언어를 옮기는 것이 아니라, AI가 담아낼 수 없는 이야기의 숨결까지 옮기는 곳. 이야기의 리듬과 온기, 그리고 문화적 뉘앙스까지 살려 양국의 어린 독자에게 책을 살아 숨 쉬게 합니다.</p>
+        <p class="about-place">📍 <b>벨기에 앤트워프</b>에 자리잡고 있습니다. 유네스코 세계문화유산 플랑탱-모레투스 인쇄소부터 오늘날 세계적으로 인정받는 플랑드르 그림책 전통까지 — 유럽 어린이책 출판의 중심에서 일합니다.</p>
+        <p class="sig">세상의 이야기를 잇는 곳. 그곳이 바로 스튜디오 하누리입니다.</p>
+      </div>
+      <div class="about-visual reveal">
+        <img src="assets/about-card.png" alt="스튜디오 하누리 — 한우리" class="about-card-img">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <img src="assets/emblem-white.png" class="svc-logo-float" alt="" aria-hidden="true">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">서비스</div>
+      <h2 class="sec-title">하는 일</h2>
+      <p class="sec-intro">첫 문장부터 서점의 책장까지 — 당신의 이야기가 두 나라를 여행하도록 돕는 두 가지 방법.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card reveal">
+        <div class="svc-num">01</div>
+        <h3>번역</h3>
+        <p>출판사와 작가를 위한 어린이책 번역. 단순히 언어를 바꾸는 것이 아니라, AI가 담아낼 수 없는 리듬과 어조, 문화적 뉘앙스까지 살려 양국의 어린 독자에게 전합니다.</p>
+        <span class="svc-pill">한국어 ⇄ 네덜란드어</span>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-num">02</div>
+        <h3>문화 브릿지</h3>
+        <p>한국과 네덜란드·벨기에 출판 시장을 잇는 컨설팅. 문화적 맥락 설명, 현지화 조언, 시장 차이 안내, 그리고 출판사·작가 간 연결까지 함께합니다.</p>
+        <span class="svc-pill">KR · NL · BE</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--
+<section class="portfolio" id="portfolio">
+  <div class="wrap">
+    <div class="port-head reveal">
+      <div>
+        <div class="eyebrow">포트폴리오</div>
+        <h2 class="sec-title">함께한 책들</h2>
+      </div>
+      <p>세계 곳곳에서 새로운 독자를 만난, 점점 채워지는 이야기의 책장.</p>
+    </div>
+    <div class="port-grid"></div>
+    <p class="port-note">첫 번역서들이 곧 나옵니다 — 이 책장은 이제 막 시작되었어요.</p>
+  </div>
+</section>
+-->
+
+<section class="blog" id="blog">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">소식</div>
+      <h2 class="sec-title">새로운 이야기</h2>
+    </div>
+    <div class="blog-grid"></div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <img src="assets/emblem-white.png" class="contact-logo-float" alt="" aria-hidden="true">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="eyebrow">문의</div>
+        <h2 class="sec-title">함께 이야기를 나눠요</h2>
+        <p class="contact-intro">함께 일하고 싶으시거나, 저희가 하는 일이 궁금하신가요? 언제든 편하게 연락 주세요.</p>
+        <a class="contact-detail" href="mailto:studiohanuri@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> studiohanuri@gmail.com</a>
+        <a class="contact-detail" href="https://www.instagram.com/studio_hanuri/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg> @studio_hanuri</a>
+        <div class="contact-detail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> 벨기에 앤트워프</div>
+      </div>
+      <form class="cform reveal" id="cform" name="contact-kr" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-netlify-recaptcha="false">
+        <input type="hidden" name="form-name" value="contact-kr">
+        <p style="display:none"><label>Don't fill: <input name="bot-field"></label></p>
+        <div>
+          <label>이름</label>
+          <input type="text" name="name" placeholder="홍길동" required>
+        </div>
+        <div>
+          <label>이메일</label>
+          <input type="email" name="email" placeholder="hong@example.com" required>
+        </div>
+        <div>
+          <label>어떤 도움이 필요하신가요?</label>
+          <select name="service">
+            <option value="">서비스 선택…</option>
+            <option>출판 수출/수입 문의</option>
+            <option>유럽 마켓 진출 컨설팅 문의</option>
+            <option>번역 문의</option>
+            <option>기타 문의</option>
+          </select>
+        </div>
+        <div>
+          <label>메시지</label>
+          <textarea name="message" placeholder="책이나 프로젝트에 대해 들려주세요…"></textarea>
+        </div>
+        <button type="submit" class="send-btn">보내기</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">
+    <img src="assets/wordmark-white.png" alt="Studio Hanuri">
+  </div>
+  <div class="footer-links">
+    <a href="#about">소개</a><a href="#services">서비스</a><!-- <a href="#portfolio">포트폴리오</a> --><a href="#blog">소식</a><a href="#contact">문의</a>
+  </div>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/studio_hanuri/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+    <a href="mailto:studiohanuri@gmail.com" aria-label="E-mail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+  </div>
+  <div class="footer-sub">studiohanuri.com · 어린이책 번역 · 문화 브릿지 · © 2026</div>
+  <div class="footer-legal">
+    <strong>Studio Hanuri</strong> · BTW BE 0696.737.934<br>
+    Robert Broeckhovestraat 35, 2610 Wilrijk, België
+  </div>
+</footer>
+
+<script>
+const header=document.getElementById('header');
+window.addEventListener('scroll',()=>{header.classList.toggle('scrolled',window.scrollY>40);});
+
+const menuBtn=document.getElementById('menuBtn'),nav=document.getElementById('nav');
+menuBtn.addEventListener('click',()=>nav.classList.toggle('open'));
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+
+document.querySelectorAll('.lang').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const lang=btn.dataset.lang;
+    if(lang==='en'){window.location.href='index.html';}
+    else if(lang==='nl'){window.location.href='index-nl.html';}
+  });
+});
+
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.15});
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%3*0.08)+'s';io.observe(el);});
+
+document.getElementById('cform').addEventListener('submit', async e => {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('.send-btn');
+  const original = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = '전송 중…';
+  try {
+    const data = new FormData(form);
+    const body = new URLSearchParams(data).toString();
+    const res = await fetch('/', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body
+    });
+    if (!res.ok) throw new Error(res.status);
+    btn.textContent = '감사합니다! ✓';
+    btn.style.background = '#cdd7f5';
+    form.reset();
+    setTimeout(() => { btn.textContent = original; btn.style.background = ''; btn.disabled = false; }, 3500);
+  } catch (err) {
+    btn.textContent = '⚠️ Try again';
+    setTimeout(() => { btn.textContent = original; btn.disabled = false; }, 3000);
+  }
+});
+</script>
+<script src="assets/content-loader.js"></script>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+// Netlify Identity: 가입 초대 메일에서 사이트로 돌아오면 admin으로 보내기
+if (window.netlifyIdentity) {
+  window.netlifyIdentity.on("init", user => {
+    if (!user) {
+      window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; });
+    }
+  });
+}
+</script>
+<script>
+// chalk line trail — draws like writing with chalk (desktop only)
+(function(){
+  if(window.matchMedia('(hover:none),(pointer:coarse)').matches) return;
+  const canvas = document.createElement('canvas');
+  canvas.id = 'chalk-canvas';
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+  let dpr = window.devicePixelRatio || 1;
+  function resize(){
+    dpr = window.devicePixelRatio || 1;
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+    canvas.style.width = window.innerWidth + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // 분필 선분들: 각각 그려진 시점과 두 끝점을 기억해서 페이드시킴
+  // 그리기는 "stamp" 방식: 짧은 선분 위에 여러 거친 점을 찍어 분필 질감 만듦
+  let segments = []; // {x1,y1,x2,y2,born,width}
+  let last = null;
+
+  document.addEventListener('mousemove', function(e){
+    const x = e.clientX, y = e.clientY;
+    if(last){
+      const dx = x-last.x, dy = y-last.y;
+      const dist = Math.sqrt(dx*dx+dy*dy);
+      // 너무 짧은 이동은 무시
+      if(dist > 2){
+        segments.push({x1:last.x,y1:last.y,x2:x,y2:y,born:performance.now(),width:2+Math.random()*1.5});
+        // 너무 많이 쌓이면 오래된 것 정리
+        if(segments.length > 600) segments = segments.slice(-500);
+      }
+    }
+    last = {x,y};
+  }, {passive:true});
+
+  // 마우스가 화면 떠나면 last 리셋 (점프 방지)
+  document.addEventListener('mouseleave', function(){ last = null; });
+
+  const LIFE = 1100; // 자국이 살아있는 시간(ms)
+  function tick(){
+    const now = performance.now();
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    const alive = [];
+    for(let i=0;i<segments.length;i++){
+      const s = segments[i];
+      const age = now - s.born;
+      if(age > LIFE) continue;
+      alive.push(s);
+      const t = age / LIFE;
+      const alpha = (1-t) * 0.85;
+      // 분필 질감: 선 위에 작은 점들을 거칠게 흩뿌림
+      const len = Math.sqrt((s.x2-s.x1)**2 + (s.y2-s.y1)**2);
+      const steps = Math.max(2, Math.ceil(len/1.2));
+      for(let k=0;k<steps;k++){
+        const r = k/steps;
+        const cx = s.x1 + (s.x2-s.x1)*r;
+        const cy = s.y1 + (s.y2-s.y1)*r;
+        // 분필 특유의 흩뿌림 효과: 선 주변에 랜덤 점
+        for(let j=0;j<3;j++){
+          const jitter = (Math.random()-0.5) * s.width * 2.2;
+          // 선의 수직 방향으로 흩뿌리기
+          const nx = -(s.y2-s.y1)/len * jitter;
+          const ny =  (s.x2-s.x1)/len * jitter;
+          const px = cx + nx;
+          const py = cy + ny;
+          const dotAlpha = alpha * (0.4 + Math.random()*0.6);
+          const dotSize = 0.6 + Math.random()*1.1;
+          ctx.fillStyle = 'rgba(255,200,50,'+dotAlpha+')';
+          ctx.beginPath();
+          ctx.arc(px,py,dotSize,0,Math.PI*2);
+          ctx.fill();
+        }
+      }
+    }
+    segments = alive;
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>
