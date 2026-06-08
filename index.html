@@ -244,7 +244,7 @@ footer{background:var(--navy-deep);color:rgba(255,255,255,.6);padding:3rem 2.5re
       <ul>
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
+        <!-- <li><a href="#portfolio">Portfolio</a></li> -->
         <li><a href="#blog">Journal</a></li>
         <li><a href="#contact">Contact</a></li>
       <li class="mobile-lang">
@@ -320,6 +320,7 @@ footer{background:var(--navy-deep);color:rgba(255,255,255,.6);padding:3rem 2.5re
   </div>
 </section>
 
+<!--
 <section class="portfolio" id="portfolio">
   <div class="wrap">
     <div class="port-head reveal">
@@ -333,6 +334,7 @@ footer{background:var(--navy-deep);color:rgba(255,255,255,.6);padding:3rem 2.5re
     <p class="port-note">Our first translated titles are on the way — this shelf is just getting started.</p>
   </div>
 </section>
+-->
 
 <section class="blog" id="blog">
   <div class="wrap">
@@ -392,7 +394,7 @@ footer{background:var(--navy-deep);color:rgba(255,255,255,.6);padding:3rem 2.5re
     <img src="assets/wordmark-white.png" alt="Studio Hanuri">
   </div>
   <div class="footer-links">
-    <a href="#about">About</a><a href="#services">Services</a><a href="#portfolio">Portfolio</a><a href="#blog">Journal</a><a href="#contact">Contact</a>
+    <a href="#about">About</a><a href="#services">Services</a><!-- <a href="#portfolio">Portfolio</a> --><a href="#blog">Journal</a><a href="#contact">Contact</a>
   </div>
   <div class="footer-social">
     <a href="https://www.instagram.com/studio_hanuri/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
@@ -438,7 +440,7 @@ document.getElementById('cform').addEventListener('submit', async e => {
   try {
     const data = new FormData(form);
     const body = new URLSearchParams(data).toString();
-    const res = await fetch('/', {
+    const res = await fetch(window.location.pathname, {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body
