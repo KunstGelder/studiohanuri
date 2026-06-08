@@ -264,22 +264,24 @@ footer{background:var(--navy-deep);color:rgba(255,255,255,.6);padding:3rem 2.5re
 </header>
 
 <a id="top"></a>
-<div class="hero">
-  <img src="assets/hero-bg.jpg" class="hero-bg" alt="Children reading together">
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">Children's books translation · Cultural bridge</div>
-    <h1>The breath of a <em>story</em>,<br>carried across worlds.</h1>
-    <div class="hero-kr">세상의 이야기를 잇는 곳</div>
-    <p class="hero-tag">We don't just translate words — <b>we carry what AI can't:</b> the rhythm, the warmth, the soul of a children's book.</p>
-    <a href="#contact" class="hero-cta">Get in touch →</a>
-  </div>
-  <img src="assets/emblem-white.png" class="hero-logo-float" alt="" aria-hidden="true">
-</div>
+<div class="hero-about-wrap">
+  <img src="assets/hero-bg.jpg" class="shared-bg" alt="Children reading together">
+  <div class="shared-overlay"></div>
 
-<section class="about" id="about">
-  <div class="wrap">
-    <div class="about-grid">
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Children's books translation · Cultural bridge</div>
+      <h1>The breath of a <em>story</em>,<br>carried across worlds.</h1>
+      <div class="hero-kr">세상의 이야기를 잇는 곳</div>
+      <p class="hero-tag">We don't just translate words — <b>we carry what AI can't:</b> the rhythm, the warmth, the soul of a children's book.</p>
+      <a href="#contact" class="hero-cta">Get in touch →</a>
+    </div>
+    <img src="assets/emblem-white.png" class="hero-logo-float" alt="" aria-hidden="true">
+  </div>
+
+  <section class="about" id="about">
+    <div class="wrap">
+      <div class="about-grid">
       <div class="about-body reveal">
         <div class="eyebrow">About</div>
         <h2 class="sec-title">Bridging stories across two worlds</h2>
@@ -293,7 +295,8 @@ footer{background:var(--navy-deep);color:rgba(255,255,255,.6);padding:3rem 2.5re
       </div>
     </div>
   </div>
-</section>
+  </section>
+</div>
 
 <section class="services" id="services">
   <img src="assets/emblem-white.png" class="svc-logo-float" alt="" aria-hidden="true">
@@ -440,7 +443,7 @@ document.getElementById('cform').addEventListener('submit', async e => {
   try {
     const data = new FormData(form);
     const body = new URLSearchParams(data).toString();
-    const res = await fetch(window.location.pathname, {
+    const res = await fetch('/?no-cache=' + Date.now(), {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body
