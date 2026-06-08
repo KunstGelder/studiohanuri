@@ -1,16 +1,18 @@
+
 [build]
   publish = "."
-
+  command = "echo 'build'"
+ 
 [[redirects]]
   from = "/"
   to = "/index.html"
   status = 200
-
+ 
 [[redirects]]
   from = "/index-nl"
   to = "/index-nl.html"
   status = 200
-
+ 
 [[redirects]]
   from = "/index-kr"
   to = "/index-kr.html"
