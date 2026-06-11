@@ -49,15 +49,15 @@
       #blog-modal{display:none;position:fixed;inset:0;z-index:9000;align-items:center;justify-content:center;padding:1.5rem;}
       #blog-modal.open{display:flex;}
       #blog-modal-backdrop{position:absolute;inset:0;background:rgba(22,40,90,.55);backdrop-filter:blur(4px);}
-      #blog-modal-box{position:relative;z-index:1;background:#fff;border-radius:20px;max-width:1000px;width:100%;max-height:88vh;overflow:hidden;box-shadow:0 32px 80px -16px rgba(22,40,90,.45);display:flex;flex-direction:row;}
-      #blog-modal-imgwrap{flex:0 0 55%;max-width:55%;background:#f6f3ec;display:flex;align-items:center;justify-content:center;max-height:88vh;overflow:hidden;}
+      #blog-modal-box{position:relative;z-index:1;background:#fff;border-radius:20px;max-width:1500px;width:100%;max-height:88vh;overflow:hidden;box-shadow:0 32px 80px -16px rgba(22,40,90,.45);display:flex;flex-direction:row;}
+      #blog-modal-imgwrap{flex:0 0 50%;max-width:50%;background:#f6f3ec;display:flex;align-items:center;justify-content:center;max-height:88vh;overflow:hidden;}
       #blog-modal-imgwrap.empty{display:none;}
       #blog-modal-img{width:100%;height:100%;object-fit:contain;display:block;}
       #blog-modal-body{flex:1;padding:2.4rem 2.6rem;overflow-y:auto;max-height:88vh;}
       #blog-modal-meta{display:flex;gap:.8rem;align-items:center;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:#2a4a9d;font-weight:600;margin-bottom:1rem;}
       #blog-modal-meta .tag{background:#e7ebf7;padding:.2rem .6rem;border-radius:20px;}
       #blog-modal-title{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:1.75rem;line-height:1.2;color:#1a1a22;margin-bottom:1.4rem;}
-      #blog-modal-content{font-size:1rem;line-height:1.85;color:#4a4a55;}
+      #blog-modal-content{font-size:1rem;line-height:1.85;color:#4a4a55;max-width:60ch;}
       #blog-modal-content p{margin-bottom:1.1rem;}
       #blog-modal-close{position:absolute;top:1.1rem;right:1.2rem;z-index:2;background:rgba(255,255,255,.9);border:none;border-radius:50%;width:36px;height:36px;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:background .2s;}
       #blog-modal-close:hover{background:#fff;}
