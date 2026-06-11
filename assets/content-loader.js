@@ -49,10 +49,11 @@
       #blog-modal{display:none;position:fixed;inset:0;z-index:9000;align-items:center;justify-content:center;padding:1.5rem;}
       #blog-modal.open{display:flex;}
       #blog-modal-backdrop{position:absolute;inset:0;background:rgba(22,40,90,.55);backdrop-filter:blur(4px);}
-      #blog-modal-box{position:relative;z-index:1;background:#fff;border-radius:20px;max-width:680px;width:100%;max-height:88vh;overflow-y:auto;box-shadow:0 32px 80px -16px rgba(22,40,90,.45);}
-      #blog-modal-img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:20px 20px 0 0;display:block;}
-      #blog-modal-img.empty{display:none;}
-      #blog-modal-body{padding:2.2rem 2.4rem 2.8rem;}
+      #blog-modal-box{position:relative;z-index:1;background:#fff;border-radius:20px;max-width:900px;width:100%;max-height:88vh;overflow:hidden;box-shadow:0 32px 80px -16px rgba(22,40,90,.45);display:flex;flex-direction:row;}
+      #blog-modal-imgwrap{flex:0 0 45%;max-width:45%;background:#f6f3ec;display:flex;align-items:center;justify-content:center;max-height:88vh;overflow:hidden;}
+      #blog-modal-imgwrap.empty{display:none;}
+      #blog-modal-img{width:100%;height:100%;object-fit:contain;display:block;}
+      #blog-modal-body{flex:1;padding:2.4rem 2.6rem;overflow-y:auto;max-height:88vh;}
       #blog-modal-meta{display:flex;gap:.8rem;align-items:center;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:#2a4a9d;font-weight:600;margin-bottom:1rem;}
       #blog-modal-meta .tag{background:#e7ebf7;padding:.2rem .6rem;border-radius:20px;}
       #blog-modal-title{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:1.75rem;line-height:1.2;color:#1a1a22;margin-bottom:1.4rem;}
@@ -60,7 +61,13 @@
       #blog-modal-content p{margin-bottom:1.1rem;}
       #blog-modal-close{position:absolute;top:1.1rem;right:1.2rem;z-index:2;background:rgba(255,255,255,.9);border:none;border-radius:50%;width:36px;height:36px;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:background .2s;}
       #blog-modal-close:hover{background:#fff;}
-      @media(max-width:640px){#blog-modal-body{padding:1.4rem 1.4rem 2rem;}#blog-modal-title{font-size:1.35rem;}}
+      @media(max-width:720px){
+        #blog-modal-box{flex-direction:column;max-height:90vh;overflow-y:auto;}
+        #blog-modal-imgwrap{flex:none;max-width:100%;width:100%;max-height:50vh;}
+        #blog-modal-img{max-height:50vh;}
+        #blog-modal-body{padding:1.6rem 1.6rem 2rem;max-height:none;overflow-y:visible;}
+        #blog-modal-title{font-size:1.4rem;}
+      }
     `;
     document.head.appendChild(style);
 
@@ -70,7 +77,7 @@
       <div id="blog-modal-backdrop"></div>
       <div id="blog-modal-box">
         <button id="blog-modal-close" aria-label="${L.close}">✕</button>
-        <img id="blog-modal-img" src="" alt="">
+        <div id="blog-modal-imgwrap"><img id="blog-modal-img" src="" alt=""></div>
         <div id="blog-modal-body">
           <div id="blog-modal-meta"><span class="tag" id="blog-modal-tag"></span><span id="blog-modal-date"></span></div>
           <h2 id="blog-modal-title"></h2>
@@ -91,8 +98,9 @@
     const img = item.image || '';
 
     const imgEl = document.getElementById('blog-modal-img');
-    if(img){ imgEl.src = img; imgEl.alt = title; imgEl.classList.remove('empty'); }
-    else { imgEl.src=''; imgEl.classList.add('empty'); }
+    const imgWrap = document.getElementById('blog-modal-imgwrap');
+    if(img){ imgEl.src = img; imgEl.alt = title; imgWrap.classList.remove('empty'); }
+    else { imgEl.src=''; imgWrap.classList.add('empty'); }
     document.getElementById('blog-modal-tag').textContent = tag;
     document.getElementById('blog-modal-date').textContent = fmtDate(item.date);
     document.getElementById('blog-modal-title').textContent = title;
