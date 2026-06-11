@@ -61,12 +61,20 @@
       #blog-modal-content p{margin-bottom:1.1rem;}
       #blog-modal-close{position:absolute;top:1.1rem;right:1.2rem;z-index:2;background:rgba(255,255,255,.9);border:none;border-radius:50%;width:36px;height:36px;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:background .2s;}
       #blog-modal-close:hover{background:#fff;}
+      .blog-modal-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:3;background:rgba(255,255,255,.92);border:none;border-radius:50%;width:46px;height:46px;font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(22,40,90,.25);transition:background .2s,transform .2s;color:#2a4a9d;}
+      .blog-modal-nav:hover{background:#fff;}
+      #blog-modal-prev{left:1.2rem;}
+      #blog-modal-next{right:1.2rem;}
+      .blog-modal-nav.hidden{display:none;}
       @media(max-width:720px){
         #blog-modal-box{flex-direction:column;max-height:90vh;overflow-y:auto;}
         #blog-modal-imgwrap{flex:none;max-width:100%;width:100%;max-height:50vh;justify-content:center;}
         #blog-modal-img{height:auto;width:auto;max-width:100%;max-height:50vh;}
         #blog-modal-body{padding:1.6rem 1.6rem 2rem;max-height:none;overflow-y:visible;justify-content:flex-start;}
         #blog-modal-title{font-size:1.4rem;}
+        .blog-modal-nav{width:38px;height:38px;font-size:1.1rem;}
+        #blog-modal-prev{left:.6rem;}
+        #blog-modal-next{right:.6rem;}
       }
     `;
     document.head.appendChild(style);
@@ -77,6 +85,8 @@
       <div id="blog-modal-backdrop"></div>
       <div id="blog-modal-box">
         <button id="blog-modal-close" aria-label="${L.close}">✕</button>
+        <button id="blog-modal-prev" class="blog-modal-nav" aria-label="Previous">‹</button>
+        <button id="blog-modal-next" class="blog-modal-nav" aria-label="Next">›</button>
         <div id="blog-modal-imgwrap"><img id="blog-modal-img" src="" alt=""></div>
         <div id="blog-modal-body">
           <div id="blog-modal-meta"><span class="tag" id="blog-modal-tag"></span><span id="blog-modal-date"></span></div>
@@ -88,10 +98,38 @@
 
     document.getElementById('blog-modal-close').addEventListener('click', closeModal);
     document.getElementById('blog-modal-backdrop').addEventListener('click', closeModal);
-    document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+    document.getElementById('blog-modal-prev').addEventListener('click', e => { e.stopPropagation(); navModal(-1); });
+    document.getElementById('blog-modal-next').addEventListener('click', e => { e.stopPropagation(); navModal(1); });
+    document.addEventListener('keydown', e => {
+      if(!document.getElementById('blog-modal').classList.contains('open')) return;
+      if(e.key==='Escape') closeModal();
+      else if(e.key==='ArrowLeft') navModal(-1);
+      else if(e.key==='ArrowRight') navModal(1);
+    });
   }
 
-  function openModal(item, lang){
+  // 모달 네비게이션 상태
+  let modalItems = [];
+  let modalIndex = 0;
+  let modalLang = 'en';
+
+  function navModal(dir){
+    const next = modalIndex + dir;
+    if(next < 0 || next >= modalItems.length) return;
+    modalIndex = next;
+    renderModal(modalItems[modalIndex], modalLang);
+    updateNavButtons();
+  }
+
+  function updateNavButtons(){
+    const prev = document.getElementById('blog-modal-prev');
+    const next = document.getElementById('blog-modal-next');
+    if(!prev || !next) return;
+    prev.classList.toggle('hidden', modalIndex <= 0);
+    next.classList.toggle('hidden', modalIndex >= modalItems.length - 1);
+  }
+
+  function renderModal(item, lang){
     const title = item[`title_${lang}`] || item.title_en || '';
     const tag = item[`tag_${lang}`] || item.tag_en || '';
     const body = item[`body_${lang}`] || item.body_en || '';
@@ -109,7 +147,17 @@
     const content = body || excerpt;
     document.getElementById('blog-modal-content').innerHTML = content
       .split('\n\n').map(p => p.trim() ? `<p>${p.trim()}</p>` : '').join('');
+    // 내용 바뀌면 스크롤 맨 위로
+    const bodyEl = document.getElementById('blog-modal-body');
+    if(bodyEl) bodyEl.scrollTop = 0;
+  }
 
+  function openModal(items, index, lang){
+    modalItems = items;
+    modalIndex = index;
+    modalLang = lang;
+    renderModal(items[index], lang);
+    updateNavButtons();
     document.getElementById('blog-modal').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -146,7 +194,7 @@
 
     // 카드 클릭 이벤트
     blogGrid.querySelectorAll('.blog-card').forEach((card, i) => {
-      card.addEventListener('click', () => openModal(items[i], lang));
+      card.addEventListener('click', () => openModal(items, i, lang));
     });
   }
 
