@@ -50,10 +50,10 @@
       #blog-modal.open{display:flex;}
       #blog-modal-backdrop{position:absolute;inset:0;background:rgba(22,40,90,.55);backdrop-filter:blur(4px);}
       #blog-modal-box{position:relative;z-index:1;background:#fff;border-radius:20px;max-width:1500px;width:100%;max-height:88vh;overflow:hidden;box-shadow:0 32px 80px -16px rgba(22,40,90,.45);display:flex;flex-direction:row;}
-      #blog-modal-imgwrap{flex:0 0 50%;max-width:50%;background:#f6f3ec;display:flex;align-items:center;justify-content:center;max-height:88vh;overflow:hidden;}
+      #blog-modal-imgwrap{flex:0 0 auto;background:#f6f3ec;display:flex;align-items:flex-start;justify-content:flex-start;max-height:88vh;max-width:65%;overflow:hidden;}
       #blog-modal-imgwrap.empty{display:none;}
-      #blog-modal-img{width:100%;height:100%;object-fit:contain;display:block;}
-      #blog-modal-body{flex:1;padding:2.4rem 2.6rem;overflow-y:auto;max-height:88vh;}
+      #blog-modal-img{height:88vh;width:auto;max-width:100%;object-fit:contain;display:block;}
+      #blog-modal-body{flex:1;padding:2.4rem 2.6rem;overflow-y:auto;max-height:88vh;display:flex;flex-direction:column;justify-content:center;}
       #blog-modal-meta{display:flex;gap:.8rem;align-items:center;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:#2a4a9d;font-weight:600;margin-bottom:1rem;}
       #blog-modal-meta .tag{background:#e7ebf7;padding:.2rem .6rem;border-radius:20px;}
       #blog-modal-title{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:1.75rem;line-height:1.2;color:#1a1a22;margin-bottom:1.4rem;}
@@ -63,9 +63,9 @@
       #blog-modal-close:hover{background:#fff;}
       @media(max-width:720px){
         #blog-modal-box{flex-direction:column;max-height:90vh;overflow-y:auto;}
-        #blog-modal-imgwrap{flex:none;max-width:100%;width:100%;max-height:50vh;}
-        #blog-modal-img{max-height:50vh;}
-        #blog-modal-body{padding:1.6rem 1.6rem 2rem;max-height:none;overflow-y:visible;}
+        #blog-modal-imgwrap{flex:none;max-width:100%;width:100%;max-height:50vh;justify-content:center;}
+        #blog-modal-img{height:auto;width:auto;max-width:100%;max-height:50vh;}
+        #blog-modal-body{padding:1.6rem 1.6rem 2rem;max-height:none;overflow-y:visible;justify-content:flex-start;}
         #blog-modal-title{font-size:1.4rem;}
       }
     `;
