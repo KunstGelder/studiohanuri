@@ -49,8 +49,8 @@
       #blog-modal{display:none;position:fixed;inset:0;z-index:9000;align-items:center;justify-content:center;padding:1.5rem;}
       #blog-modal.open{display:flex;}
       #blog-modal-backdrop{position:absolute;inset:0;background:rgba(22,40,90,.55);backdrop-filter:blur(4px);}
-      #blog-modal-box{position:relative;z-index:1;background:#fff;border-radius:20px;max-width:900px;width:100%;max-height:88vh;overflow:hidden;box-shadow:0 32px 80px -16px rgba(22,40,90,.45);display:flex;flex-direction:row;}
-      #blog-modal-imgwrap{flex:0 0 45%;max-width:45%;background:#f6f3ec;display:flex;align-items:center;justify-content:center;max-height:88vh;overflow:hidden;}
+      #blog-modal-box{position:relative;z-index:1;background:#fff;border-radius:20px;max-width:1000px;width:100%;max-height:88vh;overflow:hidden;box-shadow:0 32px 80px -16px rgba(22,40,90,.45);display:flex;flex-direction:row;}
+      #blog-modal-imgwrap{flex:0 0 55%;max-width:55%;background:#f6f3ec;display:flex;align-items:center;justify-content:center;max-height:88vh;overflow:hidden;}
       #blog-modal-imgwrap.empty{display:none;}
       #blog-modal-img{width:100%;height:100%;object-fit:contain;display:block;}
       #blog-modal-body{flex:1;padding:2.4rem 2.6rem;overflow-y:auto;max-height:88vh;}
