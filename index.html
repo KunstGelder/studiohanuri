@@ -194,7 +194,7 @@ footer{background:var(--navy-deep);color:rgba(255,255,255,.6);padding:3rem 2.5re
 .footer-legal strong{color:rgba(255,255,255,.7);font-weight:600;}
 
 /* reveal */
-.reveal{opacity:0;transform:perspective(1200px) rotateX(-12deg) translateY(40px);transform-origin:top center;transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1);}
+.reveal{opacity:0;transform:perspective(1000px) rotateX(-25deg) translateY(50px);transform-origin:top center;transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.2,1);}
 .reveal.in{opacity:1;transform:perspective(1200px) rotateX(0deg) translateY(0);}
 
 /* responsive */
@@ -429,7 +429,7 @@ const io=new IntersectionObserver((entries)=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
 },{threshold:.15});
 document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%3*0.08)+'s';io.observe(el);});
-setTimeout(function(){ document.querySelectorAll('.reveal:not(.in)').forEach(function(el){ el.classList.add('in'); }); }, 1000);
+setTimeout(function(){ document.querySelectorAll('.reveal:not(.in)').forEach(function(el){ var r=el.getBoundingClientRect(); if(r.top < window.innerHeight){ el.classList.add('in'); } }); }, 2500);
 
 // Formspree AJAX
 const cform = document.querySelector('.cform');
