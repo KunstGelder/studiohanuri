@@ -20,11 +20,12 @@
     if(!iso) return '';
     const d = new Date(iso);
     if(isNaN(d)) return iso;
-    if(lang==='kr') return `${d.getFullYear()}년 ${d.getMonth()+1}월`;
+    if(lang==='kr') return `${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일`;
     const months = lang==='nl'
       ? ['januari','februari','maart','april','mei','juni','juli','augustus','september','oktober','november','december']
       : ['January','February','March','April','May','June','July','August','September','October','November','December'];
-    return `${months[d.getMonth()]} ${d.getFullYear()}`.replace(/^./,c=>c.toUpperCase());
+    if(lang==='nl') return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+    return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
   }
 
   // manifest 로드: 빌드 시 생성되는 파일 목록
