@@ -35,7 +35,7 @@ collections:
         field: date
         pattern: "2026"
     fields:
-      - { label: "Date 날짜", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, default: "" }
+      - { label: "Date 날짜 (예: 2026-07-13)", name: "date", widget: "string", default: "", hint: "YYYY-MM-DD 형식으로 입력하세요. 예: 2026-07-13" }
       - { label: "Image 이미지", name: "image", widget: "image", required: false, hint: "이미지를 업로드하거나 기존 사진 선택" }
 
       - { label: "Tag — English", name: "tag_en", widget: "string", hint: "예: Event / Insights / Studio" }
