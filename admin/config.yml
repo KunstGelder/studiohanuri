@@ -17,12 +17,6 @@ logo_url: /assets/logo.png
 # 편집기 언어 (관리자 화면 UI)
 locale: 'en'
 
-# 파일명(슬러그)에 쓸 수 없는 문자 정리 + 최대 길이 제한
-slug:
-  encoding: "ascii"
-  clean_accents: true
-  sanitize_replacement: "-"
-
 collections:
   # ────────── 블로그 / 소식 ──────────
   - name: "blog"
