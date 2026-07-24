@@ -17,6 +17,12 @@ logo_url: /assets/logo.png
 # 편집기 언어 (관리자 화면 UI)
 locale: 'en'
 
+# 파일명(슬러그)에 쓸 수 없는 문자 정리 + 최대 길이 제한
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
 collections:
   # ────────── 블로그 / 소식 ──────────
   - name: "blog"
@@ -25,7 +31,8 @@ collections:
     folder: "_data/blog"
     create: true
     delete: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    # 제목과 무관하게 날짜+시각으로 짧고 안전한 파일명 생성
+    slug: "{{year}}-{{month}}-{{day}}-{{hour}}{{minute}}{{second}}"
     format: "json"
     summary: "{{date}} — {{title_en}}"
     sortable_fields: ['date']
@@ -56,7 +63,8 @@ collections:
     folder: "_data/portfolio"
     create: true
     delete: true
-    slug: "{{slug}}"
+    # 제목과 무관하게 날짜+시각으로 짧고 안전한 파일명 생성
+    slug: "{{year}}-{{month}}-{{day}}-{{hour}}{{minute}}{{second}}"
     format: "json"
     summary: "{{title_en}} — {{publisher_en}} ({{direction}})"
     sortable_fields: ['order']
